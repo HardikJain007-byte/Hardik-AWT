@@ -1,0 +1,24 @@
+{
+  "name": "hardik-awt",
+  "version": "1.0.0",
+  "description": "This is my first Git Repository",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HardikJain007-byte/Hardik-AWT.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HardikJain007-byte/Hardik-AWT/issues"
+  },
+  "homepage": "https://github.com/HardikJain007-byte/Hardik-AWT#readme",
+  "dependencies": {
+    "cookie-parser": "^1.4.7",
+    "express": "^5.1.0"
+  }
+}

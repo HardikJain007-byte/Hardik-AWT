@@ -1,0 +1,17 @@
+#message {
+    display: none;
+    /* hidden by default */
+    padding: 10px;
+    margin-top: 10px;
+    background: lightyellow;
+    border: 1px solid #ccc;
+}
+
+img {
+    cursor: pointer;
+    width: 100px;
+}
+
+p {
+    transition: color 0.3s;
+}

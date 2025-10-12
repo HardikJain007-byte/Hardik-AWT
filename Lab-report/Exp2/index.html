@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Experiment 2 - jQuery CSS and Events</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="./style.css" />
+    <style>
+        /* Added basic styling for clarity */
+        .container {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+        }
+
+        .highlight {
+            background-color: yellow;
+            font-weight: bold;
+        }
+
+        #pos-box,
+        #anim-box {
+            width: 120px;
+            height: 50px;
+            background-color: lightblue;
+            text-align: center;
+            line-height: 50px;
+            margin-bottom: 10px;
+        }
+
+        .anim-done {
+            background-color: lightgreen;
+            color: white;
+        }
+
+        button {
+            margin-top: 5px;
+            padding: 6px 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>JQuery CSS & Events</h1>
+
+        <section id="add-class">
+            <h2>Add a class to an element</h2>
+            <p id="para">
+                This paragraph will change class when you click the button.
+            </p>
+            <button id="btn-add">Add .highlight</button>
+        </section>
+
+        <section id="position">
+            <h2>Get element position</h2>
+            <div id="pos-box">Position me</div>
+            <button id="btn-pos">Show position</button>
+            <p id="pos-output"></p>
+        </section>
+
+        <section id="animate">
+            <h2>Animate multiple CSS properties</h2>
+            <div id="anim-box">Animate me</div>
+            <button id="btn-anim">Animate</button>
+        </section>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+
+            // 1. Add class to an element
+            $("#btn-add").click(function () {
+                $("#para").addClass("highlight");
+            });
+
+            // 2. Access position of an element
+            $("#btn-pos").click(function () {
+                const pos = $("#pos-box").position();
+                const off = $("#pos-box").offset();
+
+                // ✅ Corrected string template syntax
+                $("#pos-output").text(
+                    `position: top = ${pos.top}, left = ${pos.left} | offset: top = ${off.top.toFixed(1)}, left = ${off.left.toFixed(1)}`
+                );
+            });
+
+            // 3. Animate multiple CSS properties
+            $("#btn-anim").click(function () {
+                $("#anim-box").animate({
+                    paddingLeft: "40px",
+                    paddingRight: "40px",
+                    height: "80px"
+                }, 700, function () {
+                    $(this).addClass("anim-done");
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

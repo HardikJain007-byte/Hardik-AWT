@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="billApp">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Bill Payment Record</title>
+    <link rel="stylesheet" href="exp5.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.3/angular.min.js"></script>
+    <script src="exp5.js"></script>
+</head>
+
+<body ng-controller="BillController">
+
+    <h2>Bill Payment Record</h2>
+
+    <!-- Form to add new records -->
+    <form name="billForm" ng-submit="addRecord(billForm)" novalidate>
+        <label>
+            Name:
+            <input type="text" name="name" ng-model="newRecord.name" required>
+        </label>
+        <label>
+            Amount:
+            <input type="number" name="amount" ng-model="newRecord.amount" required min="0">
+        </label>
+        <label>
+            Date:
+            <input type="date" name="date" ng-model="newRecord.date" required>
+        </label>
+        <button type="submit" ng-disabled="billForm.$invalid">Add</button>
+    </form>
+
+    <!-- Records table -->
+    <table ng-if="records.length > 0">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Amount</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="record in records track by record.id">
+                <td>{{$index + 1}}</td>
+                <td>{{record.name}}</td>
+                <td>{{record.amount | currency}}</td>
+                <td>{{record.date | date:'mediumDate'}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+</body>
+
+</html>

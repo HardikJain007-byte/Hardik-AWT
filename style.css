@@ -1,0 +1,72 @@
+< !DOCTYPE html><html><head><style>body {
+    background-color: :black;
+}
+
+h1 {
+    color: blue;
+}
+
+p {
+    color: red;
+}
+
+</style><style>body {
+    font-family: "Poppins", sans-serif;
+    background: #f5f7fa;
+    margin: 0;
+    padding: 20px;
+    color: #333;
+}
+
+h1 {
+    text-align: center;
+    font-size: 2.2rem;
+    color: #2c3e50;
+    margin-bottom: 30px;
+}
+
+section {
+    background: #fff;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 12px;
+    max-width: 700px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #2980b9;
+    border-bottom: 2px solid #2980b9;
+    padding-bottom: 5px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    margin: 10px 0;
+}
+
+ul li a {
+    display: block;
+    text-decoration: none;
+    padding: 10px 15px;
+    background: #ecf0f1;
+    border-radius: 8px;
+    color: #2c3e50;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+ul li a:hover {
+    background: #2980b9;
+    color: #fff;
+    transform: translateX(5px);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+</style></head><body><h1>This is a heading</h1><p>This is a paragraph.</p></body></html>

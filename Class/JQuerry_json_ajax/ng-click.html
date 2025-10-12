@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html ng-app="clickApp">
+<head>
+    <title>ng-click Examples</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .container { max-width: 600px; margin: 0 auto; }
+        .btn { padding: 10px 15px; margin: 5px; border: none; cursor: pointer; border-radius: 4px; }
+        .primary { background: #007bff; color: white; }
+        .danger { background: #dc3545; color: white; }
+        .success { background: #28a745; color: white; }
+        .counter { font-size: 24px; margin: 20px 0; padding: 10px; background: #f8f9fa; }
+        .message { padding: 10px; margin: 10px 0; border: 1px solid #ddd; }
+    </style>
+</head>
+<body ng-controller="ClickController">
+    <div class="container">
+        <h1>ng-click Directive Experiments</h1>
+
+        <!-- Experiment 1: Basic Function Call -->
+        <div class="section">
+            <h2>1. Basic Function Call</h2>
+            <button class="btn primary" ng-click="sayHello()">
+                Click me to say hello!
+            </button>
+            <div class="message" ng-show="helloMessage">
+                {{ helloMessage }}
+            </div>
+        </div>
+
+        <!-- Experiment 2: Counter with Click -->
+        <div class="section">
+            <h2>2. Click Counter</h2>
+            <div class="counter">
+                Count: {{ clickCount }}
+            </div>
+            <button class="btn primary" ng-click="incrementCounter()">
+                Increment (+1)
+            </button>
+            <button class="btn danger" ng-click="decrementCounter()">
+                Decrement (-1)
+            </button>
+            <button class="btn success" ng-click="resetCounter()">
+                Reset to 0
+            </button>
+        </div>
+
+        <!-- Experiment 3: Direct Expression Evaluation -->
+        <div class="section">
+            <h2>3. Direct Expression Evaluation</h2>
+            <button class="btn primary" ng-click="showAlert = !showAlert">
+                Toggle Alert Message
+            </button>
+            <div class="message" ng-show="showAlert" style="background: #fff3cd; border-color: #ffeaa7;">
+                This alert is shown by directly toggling a variable in ng-click!
+            </div>
+        </div>
+
+        <!-- Experiment 4: Passing Parameters -->
+        <div class="section">
+            <h2>4. Passing Parameters to Functions</h2>
+            <div>
+                <button class="btn primary" ng-click="showUser('Alice', 25)">
+                    Show Alice
+                </button>
+                <button class="btn primary" ng-click="showUser('Bob', 30)">
+                    Show Bob
+                </button>
+                <button class="btn primary" ng-click="showUser('Charlie', 35)">
+                    Show Charlie
+                </button>
+            </div>
+            <div class="message" ng-if="currentUser">
+                Selected: {{ currentUser.name }} (Age: {{ currentUser.age }})
+            </div>
+        </div>
+
+        <!-- Experiment 5: Event Object and DOM Manipulation -->
+        <div class="section">
+            <h2>5. Accessing Event Object</h2>
+            <button class="btn primary" ng-click="handleClick($event)">
+                Click me and check console!
+            </button>
+            <div class="message">
+                Last click position: X={{ clickX }}, Y={{ clickY }}
+            </div>
+        </div>
+
+        <!-- Experiment 6: Toggle UI State -->
+        <div class="section">
+            <h2>6. Toggle UI Elements</h2>
+            <button class="btn primary" ng-click="isExpanded = !isExpanded">
+                {{ isExpanded ? 'Collapse' : 'Expand' }} Details
+            </button>
+            <div class="message" ng-show="isExpanded">
+                <h3>Detailed Information</h3>
+                <p>This content is shown/hidden using ng-click with a toggle variable.</p>
+                <p>Current time: {{ currentTime | date:'medium' }}</p>
+            </div>
+        </div>
+
+        <!-- Experiment 7: Multiple Actions -->
+        <div class="section">
+            <h2>7. Multiple Actions in One Click</h2>
+            <button class="btn primary" ng-click="updateMultiple()">
+                Perform Multiple Actions
+            </button>
+            <div class="message">
+                <p>Action Count: {{ actionCount }}</p>
+                <p>Last Action: {{ lastAction }}</p>
+                <p>Timestamp: {{ lastTimestamp | date:'mediumTime' }}</p>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        angular.module('clickApp', [])
+        .controller('ClickController', function($scope) {
+            // Experiment 1
+            $scope.helloMessage = '';
+            $scope.sayHello = function() {
+                $scope.helloMessage = 'Hello from AngularJS! Current time: ' + new Date().toLocaleTimeString();
+            };
+
+            // Experiment 2
+            $scope.clickCount = 0;
+            $scope.incrementCounter = function() {
+                $scope.clickCount++;
+            };
+            $scope.decrementCounter = function() {
+                $scope.clickCount--;
+            };
+            $scope.resetCounter = function() {
+                $scope.clickCount = 0;
+            };
+
+            // Experiment 3
+            $scope.showAlert = false;
+
+            // Experiment 4
+            $scope.currentUser = null;
+            $scope.showUser = function(name, age) {
+                $scope.currentUser = {
+                    name: name,
+                    age: age
+                };
+            };
+
+            // Experiment 5
+            $scope.clickX = 0;
+            $scope.clickY = 0;
+            $scope.handleClick = function(event) {
+                $scope.clickX = event.clientX;
+                $scope.clickY = event.clientY;
+                console.log('Click event:', event);
+                console.log('Button clicked at:', event.clientX, event.clientY);
+            };
+
+            // Experiment 6
+            $scope.isExpanded = false;
+            $scope.currentTime = new Date();
+
+            // Experiment 7
+            $scope.actionCount = 0;
+            $scope.lastAction = '';
+            $scope.lastTimestamp = null;
+            $scope.updateMultiple = function() {
+                $scope.actionCount++;
+                $scope.lastAction = 'Multiple actions performed';
+                $scope.lastTimestamp = new Date();
+                $scope.currentTime = new Date(); // Also update experiment 6
+            };
+
+            // Update time every second for experiment 6
+            setInterval(function() {
+                $scope.$apply(function() {
+                    $scope.currentTime = new Date();
+                });
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
+<!-- design a task management or to do list, design a application to manage the list. 
+i using jquerry 
+ii using angularjs (use browser local storage to save to do list) -->

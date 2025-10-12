@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="billApp">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Bill Payment Record</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.3/angular.min.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f8;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #2c3e50;
+            color: #fff;
+            padding: 15px 30px;
+            text-align: center;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            margin: 0;
+            font-size: 24px;
+            letter-spacing: 1px;
+        }
+
+        main {
+            max-width: 900px;
+            margin: 30px auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+            align-items: end;
+        }
+
+        label {
+            display: flex;
+            flex-direction: column;
+            font-weight: 600;
+            color: #444;
+        }
+
+        input {
+            margin-top: 5px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            transition: 0.3s;
+        }
+
+        input:focus {
+            border-color: #2c3e50;
+            outline: none;
+            box-shadow: 0 0 3px rgba(44, 62, 80, 0.3);
+        }
+
+        button {
+            background-color: #2c3e50;
+            color: #fff;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        button:hover:not(:disabled) {
+            background-color: #1a252f;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th {
+            background: #2c3e50;
+            color: #fff;
+            text-align: left;
+            padding: 12px;
+        }
+
+        td {
+            background: #fafafa;
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        tr:hover td {
+            background: #f1f1f1;
+        }
+
+        .no-records {
+            text-align: center;
+            color: #777;
+            font-style: italic;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body ng-controller="BillController">
+    <header>
+        <h2>💰 Bill Payment Record</h2>
+    </header>
+
+    <main>
+        <form name="billForm" ng-submit="addRecord(billForm)" novalidate>
+            <label>
+                Name:
+                <input type="text" name="name" ng-model="newRecord.name" required />
+            </label>
+
+            <label>
+                Amount:
+                <input type="number" name="amount" ng-model="newRecord.amount" required min="0" />
+            </label>
+
+            <label>
+                Date:
+                <input type="date" name="date" ng-model="newRecord.date" required />
+            </label>
+
+            <button type="submit" ng-disabled="billForm.$invalid">
+                Add Record
+            </button>
+        </form>
+
+        <table ng-if="records.length > 0">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Bill Name</th>
+                    <th>Amount</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="record in records track by record.id">
+                    <td>{{$index + 1}}</td>
+                    <td>{{record.name}}</td>
+                    <td>{{record.amount | currency:"₹"}}</td>
+                    <td>{{record.date | date:'mediumDate'}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p ng-if="records.length === 0" class="no-records">
+            No records available. Add a new one above!
+        </p>
+    </main>
+
+    <script>
+        angular
+            .module("billApp", [])
+            .controller("BillController", function ($scope) {
+                $scope.records = [
+                    { id: 1, name: "Electricity", amount: 1200, date: "2025-07-01" },
+                    { id: 2, name: "Internet", amount: 799, date: "2025-07-05" },
+                ];
+
+                $scope.newRecord = {};
+
+                $scope.addRecord = function (form) {
+                    if (form.$valid) {
+                        const newId = $scope.records.length + 1;
+                        $scope.records.push({
+                            id: newId,
+                            name: $scope.newRecord.name,
+                            amount: $scope.newRecord.amount,
+                            date: $scope.newRecord.date,
+                        });
+                        $scope.newRecord = {};
+                        form.$setPristine();
+                        form.$setUntouched();
+                    }
+                };
+            });
+    </script>
+</body>
+
+</html>
