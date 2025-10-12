@@ -55,19 +55,16 @@ app.get('/iterate', (req, res) => {
     const array = [10, 20, 30, 40, 50];
     const iterations = [];
 
-    // Using for loop
     iterations.push("Using for loop:");
     for (let i = 0; i < array.length; i++) {
         iterations.push(`Index ${i}: ${array[i]}`);
     }
 
-    // Using forEach
     iterations.push("Using forEach:");
     array.forEach((item, index) => {
         iterations.push(`Index ${index}: ${item}`);
     });
 
-    // Using for...of
     iterations.push("Using for...of:");
     for (const item of array) {
         iterations.push(`Item: ${item}`);
