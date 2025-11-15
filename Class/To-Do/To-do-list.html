@@ -1,0 +1,150 @@
+<html lang="en" ng-app="todoApp">
+<head>
+    <meta charset="UTF-8" />
+    <title>AngularJS To-Do List</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f9;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        /* Logout button style */
+        .logout-btn {
+            position: absolute;
+            right: 15px;
+            top: 15px;
+            padding: 8px 14px;
+            background: #ff4d4d;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .logout-btn:hover {
+            background: #e60000;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        input[type="text"] {
+            width: 75%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        li.completed span {
+            text-decoration: line-through;
+            color: gray;
+        }
+
+        .delete-btn {
+            background: red;
+            padding: 5px 10px;
+            border-radius: 5px;
+            color: white;
+        }
+    </style>
+</head>
+
+<body ng-controller="TodoController">
+
+    <div class="container">
+        <!-- LOGOUT BUTTON -->
+        <button class="logout-btn" ng-click="logout()">Logout</button>
+
+        <h2>📝 To-Do List</h2>
+
+        <input type="text" ng-model="newTask" placeholder="Enter a new task" />
+        <button ng-click="addTask()">Add</button>
+
+        <ul>
+            <li ng-repeat="task in tasks" ng-class="{completed: task.done}">
+                <span ng-click="toggleDone(task)">{{ task.name }}</span>
+                <button class="delete-btn" ng-click="deleteTask($index)">Delete</button>
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        const app = angular.module("todoApp", []);
+
+        app.controller("TodoController", function ($scope) {
+
+            // Initial Tasks
+            $scope.tasks = [
+                { name: "Learn AngularJS", done: false },
+                { name: "Build a To-Do App", done: false },
+            ];
+
+            // Add Task
+            $scope.addTask = function () {
+                if ($scope.newTask) {
+                    $scope.tasks.push({ name: $scope.newTask, done: false });
+                    $scope.newTask = "";
+                }
+            };
+
+            // Mark complete/incomplete
+            $scope.toggleDone = function (task) {
+                task.done = !task.done;
+            };
+
+            // Delete task
+            $scope.deleteTask = function (index) {
+                $scope.tasks.splice(index, 1);
+            };
+
+            // Logout function
+            $scope.logout = function () {
+                localStorage.setItem("isLoggedIn", "false");
+                window.location.href = "login.html"; // redirect to login page
+            };
+        });
+    </script>
+
+</body>
+</html>

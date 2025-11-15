@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #e6f3ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .box {
+            background: white;
+            padding: 30px;
+            width: 350px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        input {
+            width: 90%;
+            padding: 12px;
+            margin-top: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 12px;
+            width: 100%;
+            background: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background: #005bb5;
+        }
+
+        p {
+            margin-top: 10px;
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="box">
+        <h2>Login</h2>
+
+        <input id="loginUser" placeholder="Enter Username">
+        <input id="loginPass" type="password" placeholder="Enter Password">
+
+        <button id="loginBtn">Login</button>
+
+        <p id="loginMsg"></p>
+
+        <a href="register.html">Create New Account</a>
+    </div>
+
+<script>
+    $("#loginBtn").click(function () {
+        let u = $("#loginUser").val();
+        let p = $("#loginPass").val();
+
+        let savedUser = localStorage.getItem("username");
+        let savedPass = localStorage.getItem("password");
+
+        if (u === savedUser && p === savedPass) {
+            $("#loginMsg").css("color", "green").text("Login Successful!");
+            setTimeout(() => {
+                window.location.href = "todo.html";  // Redirect page
+            }, 1200);
+        } else {
+            $("#loginMsg").text("Invalid username or password!");
+        }
+    });
+</script>
+
+</body>
+</html>
