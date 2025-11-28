@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>ToDo App</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="main.js" defer></script>
+  </head>
+  <body>
+    <div class="bg-overlay"></div>
+
+    <div class="app-wrapper">
+      <div class="app-card">
+        <div class="branding">
+          <div class="logo-circle">✓</div>
+          <div>
+            <h1 class="app-title">TaskFlow</h1>
+            <p class="app-subtitle">Stay organized. Every day.</p>
+          </div>
+        </div>
+
+        <!-- Auth Section -->
+        <div id="auth-section">
+          <div id="login-box" class="auth-box">
+            <h2>Welcome Back 👋</h2>
+            <p class="small-text">Login to manage your personal to-do list.</p>
+            <form id="login-form" class="form">
+              <label>Email</label>
+              <input
+                type="email"
+                name="email"
+                placeholder="you@example.com"
+                required
+              />
+
+              <label>Password</label>
+              <input
+                type="password"
+                name="password"
+                placeholder="••••••••"
+                required
+              />
+
+              <button type="submit" class="btn primary-btn">Login</button>
+            </form>
+            <p class="switch-text">
+              New here?
+              <a href="#" id="show-register">Create an account</a>
+            </p>
+            <p id="login-message" class="message"></p>
+          </div>
+
+          <div id="register-box" class="auth-box hidden">
+            <h2>Create Account ✨</h2>
+            <p class="small-text">Sign up and start tracking your tasks.</p>
+            <form id="register-form" class="form">
+              <label>Email</label>
+              <input
+                type="email"
+                name="email"
+                placeholder="you@example.com"
+                required
+              />
+
+              <label>Password (min 4 chars)</label>
+              <input
+                type="password"
+                name="password"
+                placeholder="Choose a password"
+                required
+                minlength="4"
+              />
+
+              <button type="submit" class="btn primary-btn">Register</button>
+            </form>
+            <p class="switch-text">
+              Already have an account?
+              <a href="#" id="show-login">Login here</a>
+            </p>
+            <p id="register-message" class="message"></p>
+          </div>
+        </div>
+
+        <!-- Todo Section -->
+        <div id="todo-section" class="hidden">
+          <div class="top-bar">
+            <div class="user-info">
+              <div class="avatar-circle">
+                <span>U</span>
+              </div>
+              <div>
+                <span class="welcome-text">Welcome,</span>
+                <span id="user-email" class="user-email"></span>
+              </div>
+            </div>
+            <button id="logout-btn" class="btn ghost-btn">Logout</button>
+          </div>
+
+          <h2>Your Tasks ✅</h2>
+          <p class="small-text">
+            Add tasks, mark them complete, stay on top of your day.
+          </p>
+
+          <form id="new-todo-form" class="todo-form">
+            <input
+              type="text"
+              id="new-todo-text"
+              class="todo-input"
+              placeholder="e.g. Finish AWT assignment"
+              required
+            />
+            <button type="submit" class="btn primary-btn">Add</button>
+          </form>
+
+          <ul id="todo-list" class="todo-list"></ul>
+          <p id="todo-message" class="message"></p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

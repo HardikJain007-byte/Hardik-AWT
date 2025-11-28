@@ -1,0 +1,21 @@
+{
+    "name": "todo-app-express-mongo",
+    "version": "1.0.0",
+    "description": "ToDo app with login, registration, sessions, MongoDB, and jQuery AJAX",
+    "main": "server.js",
+    "scripts": {
+        "start": "node server.js",
+        "dev": "nodemon server.js"
+    },
+    "dependencies": {
+        "bcrypt": "^5.1.0",
+        "connect-mongo": "^5.1.0",
+        "dotenv": "^16.4.0",
+        "express": "^4.19.0",
+        "express-session": "^1.17.3",
+        "mongoose": "^8.1.0"
+    },
+    "devDependencies": {
+        "nodemon": "^3.1.0"
+    }
+}
