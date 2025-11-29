@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css" <!-- jQuery -- />
+    <title>AWT Progress</title>
+    <link rel="stylesheet" href="style.css" />
+    <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- AngularJS -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
@@ -13,98 +14,169 @@
 
 <body ng-controller="myCtrl">
     <h1>AWT Progress</h1>
-    <!-- Using AngularJS -->
+
+    <!-- Class Theory Section -->
     <section>
-        <h3>Sap id - 590018567</h3>
+        <h3>SAP ID - 590018567</h3>
         <h2>Class Theory</h2>
-        <div>
-            <ul>
-                <li ng-repeat="link in classLinks">
-                    <a ng-href="{{link.url}}">{{link.text}}</a>
-                </li>
-                <!-- Node.js heading -->
-        <h2>Nodejs</h2>
-        <li ng-repeat="link.in Node">
-        <a ng-href="{{link.url}}">{{link.text}}</a>
-        </li>
-    </ul>
-    </div>
-            </ul>
-        </div>
+        <ul>
+            <li ng-repeat="link in classLinks">
+                <a ng-href="{{link.url}}" target="_blank">{{link.text}}</a>
+            </li>
+        </ul>
     </section>
 
-    <!-- Using jQuery -->
+    <!-- Node.js Section -->
     <section>
-        <h2>Lab Experiment</h2>
-        <div>
-            <ul id="labLinks"></ul>
-        </div>
+        <h2>Node.js Experiments</h2>
+        <ul>
+            <li ng-repeat="link in Node">
+                <a ng-href="{{link.url}}" target="_blank">{{link.text}}</a>
+            </li>
+        </ul>
     </section>
 
-        <section>
-        <h2>Lab Report</h2>
-        <div>
-            <ul id="labreportLinks"></ul>
-        </div>
+    <!-- APP Section -->
+    <section>
+        <h2>Applications (APP)</h2>
+        <ul>
+            <li ng-repeat="link in App">
+                <a ng-href="{{link.url}}" target="_blank">{{link.text}}</a>
+            </li>
+        </ul>
     </section>
+
+    <!-- Lab Experiments (Using jQuery) -->
+    <section>
+        <h2>Lab Experiments</h2>
+        <ul id="labLinks"></ul>
+    </section>
+
+    <!-- Lab Reports (Using jQuery) -->
+    <section>
+        <h2>Lab Reports</h2>
+        <ul id="labreportLinks"></ul>
+    </section>
+
     <script>
         // AngularJS App
         var app = angular.module("myApp", []);
         app.controller("myCtrl", function ($scope) {
+            // Class Theory Links
             $scope.classLinks = [
-                { url: "./Class/jQuerry_Exp1/index.html",text: "remote link vs local",},
-                { url: "./Class/JQuerry_json_ajax/test.html", text: "angular expression" },
-                { url: "./Class/JQuerry_json_ajax/ng-app.html", text: "Ng-bind example" },
-                { url: "./Class/JQuerry_json_ajax/ng-bind.html", text: "Ng-Click example" },
-                { url: "./Class/JQuerry_json_ajax/ng-if.html", text: "Ng If example" },
-                { url: "./Class/JQuerry_json_ajax/ng-repeat.html", text: "Ng-Repeat example" },
-                { url: "./Class/To-Do/To-do-list.html", text: "TO DO LIST" },
-                ];
-                // Node.js Section Heading
-                $scope.Node = [
-                { url: "./Class/nodejs/Exp1.js", text: "Exp1" },
-                { url: "./Class/nodejs/Exp2.js", text: "Exp2" },
-                { url: "./Class/nodejs/Exp3.js", text: "Exp3" },
-                { url: "./Class/nodejs/Exp4.js", text: "Exp4" },
-                { url: "./Class/nodejs/Exp5.js", text: "Exp5" },
-                { url: "./Class/nodejs/test.js", text: "test" },
+                {
+                    url: "./Class/jQuerry_Exp1/index.html",
+                    text: "Remote Link vs Local",
+                },
+                {
+                    url: "./Class/JQuerry_json_ajax/test.html",
+                    text: "Angular Expression",
+                },
+                {
+                    url: "./Class/JQuerry_json_ajax/ng-app.html",
+                    text: "Ng-bind Example",
+                },
+                {
+                    url: "./Class/JQuerry_json_ajax/ng-bind.html",
+                    text: "Ng-Click Example",
+                },
+                {
+                    url: "./Class/JQuerry_json_ajax/ng-if.html",
+                    text: "Ng-If Example",
+                },
+                {
+                    url: "./Class/JQuerry_json_ajax/ng-repeat.html",
+                    text: "Ng-Repeat Example",
+                },
+                { url: "./Class/To-Do/To-do-list.html", text: "TO-DO List App" },
+            ];
+
+            // Node.js Section
+            $scope.Node = [
+                { url: "./Class/nodejs/Exp1.js", text: "Experiment 1" },
+                { url: "./Class/nodejs/Exp2.js", text: "Experiment 2" },
+                { url: "./Class/nodejs/Exp3.js", text: "Experiment 3" },
+                { url: "./Class/nodejs/Exp4.js", text: "Experiment 4" },
+                { url: "./Class/nodejs/Exp5_6.js", text: "Experiment 5" },
+                { url: "./Class/nodejs/test.js", text: "Test File" },
+            ];
+
+            // APP Section
+            $scope.App = [
+                { url: "./TODO-APP/public/index.html", text: "To-Do List App" },
             ];
         });
 
-        // jQuery Appending for Lab Section
+        // jQuery: Lab Experiments
         $(document).ready(function () {
             var labLinks = [
-                { url: "", text: " Lab Experiment 1" },
+                { url: "", text: "Lab Experiment 1" },
                 { url: "", text: "Lab Experiment 2" },
                 { url: "", text: "Lab Experiment 3" },
                 { url: "", text: "Lab Experiment 4" },
-                { url: "", text: "Lab Experiment 4" },
-                { url: "", text: "Lab Experiment6" },
+                { url: "", text: "Lab Experiment 5" },
+                { url: "", text: "Lab Experiment 6" },
             ];
 
             $.each(labLinks, function (i, link) {
                 $("#labLinks").append(
-                    '<li><a href="' + link.url + '">' + link.text + "</a></li>"
+                    '<li><a href="' +
+                    link.url +
+                    '" target="_blank">' +
+                    link.text +
+                    "</a></li>"
                 );
             });
         });
 
-                $(document).ready(function () {
+        // jQuery: Lab Reports
+        $(document).ready(function () {
             var labreportLinks = [
-                { url: "./Lab-report/Exp1/index.html", text: "Experiment 1 JQuerry Demo" },
-                { url: "./Lab-report/Exp2/index.html", text: "Experiment 2 JQuerry CSS & EVENTS" },
-                { url: "./Lab-report/Exp3/index.html", text: "Experiment 3 AngularJS Tables" },
-                { url: "./Lab-report/Exp4/Ex1/index.html", text: "Experiment 4 Registration Form" },
-                { url: "./Lab-report/Exp4/Ex2/index.html", text: "Experiment 4 Billing Form" },
-                { url: "./Lab-report/Exp6/server1.js", text: "Experimen t5&6 NodeJS" },
-                { url: "./Lab-report/Exp7/cookies.js", text: "Experiment 7 Cookies" },
-                { url: "/Lab-report/Exp7/Session.js", text: "Experiment 7 Session" },
-                { url: "./Lab-report/Exp7/session-cookies-demo.js", text: "Session-cookie-demo" },
+                {
+                    url: "./Lab-report/Exp1/index.html",
+                    text: "Experiment 1: jQuery Demo",
+                },
+                {
+                    url: "./Lab-report/Exp2/index.html",
+                    text: "Experiment 2: jQuery CSS & Events",
+                },
+                {
+                    url: "./Lab-report/Exp3/index.html",
+                    text: "Experiment 3: AngularJS Tables",
+                },
+                {
+                    url: "./Lab-report/Exp4/Ex1/index.html",
+                    text: "Experiment 4: Registration Form",
+                },
+                {
+                    url: "./Lab-report/Exp4/Ex2/index.html",
+                    text: "Experiment 4: Billing Form",
+                },
+                {
+                    url: "./Lab-report/Exp6/server1.js",
+                    text: "Experiment 5 & 6: NodeJS",
+                },
+                {
+                    url: "./Lab-report/Exp7/cookies.js",
+                    text: "Experiment 7: Cookies",
+                },
+                {
+                    url: "./Lab-report/Exp7/Session.js",
+                    text: "Experiment 7: Session",
+                },
+                {
+                    url: "./Lab-report/Exp7/session-cookies-demo.js",
+                    text: "Session-Cookie Demo",
+                },
             ];
 
             $.each(labreportLinks, function (i, link) {
                 $("#labreportLinks").append(
-                    '<li><a href="' + link.url + '">' + link.text + "</a></li>"
+                    '<li><a href="' +
+                    link.url +
+                    '" target="_blank">' +
+                    link.text +
+                    "</a></li>"
                 );
             });
         });
