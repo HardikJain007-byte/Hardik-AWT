@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shopping Center Management</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Top Bar -->
+        <header class="top-bar">
+            <div class="brand">
+                <span class="logo-circle">SC</span>
+                <div class="brand-text">
+                    <span class="brand-title">Shopping Center</span>
+                    <span class="brand-subtitle">Inventory Management System</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="content">
+            <!-- Left: Add Item Form -->
+            <section class="card form-card">
+                <h2 class="section-heading">🛒 Add New Item</h2>
+                <p class="section-desc">
+                    Fill out the details below to add an item to your stock.
+                </p>
+
+                <form id="addForm">
+                    <label>
+                        Item Name
+                        <input name="name" placeholder="e.g. Rice Bag" required />
+                    </label>
+
+                    <label>
+                        Price (₹)
+                        <input name="price" placeholder="e.g. 1200" type="number" min="0" required />
+                    </label>
+
+                    <label>
+                        Quantity
+                        <input name="quantity" placeholder="e.g. 10" type="number" min="1" required />
+                    </label>
+
+                    <div class="form-actions">
+                        <button type="submit">➕ Add Item</button>
+                        <button type="reset" class="secondary-btn">🔁 Reset</button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Right: Stock Report Table -->
+            <section class="card table-card">
+                <div class="table-header">
+                    <div>
+                        <h2 class="section-heading">📦 Stock Report</h2>
+                        <p class="section-desc">
+                            Monitor and manage your inventory efficiently.
+                        </p>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Price (₹)</th>
+                                    <th>Qty</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="itemTable"></tbody>
+                        </table>
+            </section>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <p>
+            © 2025 Shopping Center | Designed by
+            <span class="highlight">Hardik Jain</span>
+        </p>
+    </footer>
+
+    <script src="item.js"></script>
+</body>
+
+</html>

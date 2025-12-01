@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Marks Dashboard</title>
+    <link rel="stylesheet" href="/style.css" />
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- D3.js -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+
+<body>
+    <header class="top-bar">
+        <h1>Student Marks Dashboard</h1>
+        <form method="POST" action="/logout">
+            <button class="btn btn-small" type="submit">Logout</button>
+        </form>
+    </header>
+
+    <div class="container">
+        <!-- ====== ENTRY FORM ====== -->
+        <section class="card">
+            <h2>Enter / Edit Student Marks</h2>
+            <form id="student-form">
+                <!-- hidden field for editing -->
+                <input type="hidden" id="studentId" />
+
+                <div class="form-row">
+                    <label for="sapId">SAP ID</label>
+                    <input id="sapId" type="text" required />
+                </div>
+
+                <div class="form-row">
+                    <label for="name">Student Name</label>
+                    <input id="name" type="text" required />
+                </div>
+
+                <div class="form-row">
+                    <label for="marks">Marks (0–100)</label>
+                    <input id="marks" type="number" min="0" max="100" required />
+                </div>
+
+                <button type="submit" class="btn" id="submitBtn">Add Student</button>
+            </form>
+        </section>
+
+        <!-- ====== TABLE ====== -->
+        <section class="card">
+            <h2>Student List</h2>
+            <table id="students-table">
+                <thead>
+                    <tr>
+                        <th>SAP ID</th>
+                        <th>Name</th>
+                        <th>Marks</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </section>
+
+        <!-- ====== CHARTS ====== -->
+        <section class="card charts-section">
+            <h2>Performance Statistics</h2>
+            <div class="charts-grid">
+                <div>
+                    <h3>Bar Chart (Counts per Range)</h3>
+                    <div id="bar-chart"></div>
+                </div>
+                <div>
+                    <h3>Pie Chart (Percentage Distribution)</h3>
+                    <div id="pie-chart"></div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="/dashboard.js"></script>
+</body>
+
+</html>

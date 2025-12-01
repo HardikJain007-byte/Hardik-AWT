@@ -1,72 +1,111 @@
-< !DOCTYPE html><html><head><style>body {
-    background-color: :black;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cool Clean Page</title>
+    <style>
+        /* ===== Reset ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-h1 {
-    color: blue;
-}
+        /* ===== Page Background ===== */
+        body {
+            font-family: "Poppins", sans-serif;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
 
-p {
-    color: red;
-}
+            /* Background image with gradient overlay */
+            background:
+                linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)),
+                url("https://images.unsplash.com/photo-1503264116251-35a269479413?auto=format&fit=crop&w=1600&q=80")
+                center/cover fixed no-repeat;
 
-</style><style>body {
-    font-family: "Poppins", sans-serif;
-    background: #f5f7fa;
-    margin: 0;
-    padding: 20px;
-    color: #333;
-}
+            color: #333;
+        }
 
-h1 {
-    text-align: center;
-    font-size: 2.2rem;
-    color: #2c3e50;
-    margin-bottom: 30px;
-}
+        /* ===== Heading ===== */
+        h1 {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+        }
 
-section {
-    background: #fff;
-    margin: 20px auto;
-    padding: 20px;
-    border-radius: 12px;
-    max-width: 700px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
+        p {
+            text-align: center;
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
 
-section h2 {
-    font-size: 1.5rem;
-    margin-bottom: 15px;
-    color: #2980b9;
-    border-bottom: 2px solid #2980b9;
-    padding-bottom: 5px;
-}
+        /* ===== Content Sections ===== */
+        section {
+            background: rgba(255, 255, 255, 0.9);
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 12px;
+            max-width: 700px;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
 
-ul {
-    list-style: none;
-    padding: 0;
-}
+        section:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 26px rgba(0, 0, 0, 0.12);
+        }
 
-ul li {
-    margin: 10px 0;
-}
+        section h2 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #2980b9;
+            border-bottom: 2px solid #2980b9;
+            padding-bottom: 5px;
+        }
 
-ul li a {
-    display: block;
-    text-decoration: none;
-    padding: 10px 15px;
-    background: #ecf0f1;
-    border-radius: 8px;
-    color: #2c3e50;
-    font-weight: 500;
-    transition: all 0.3s ease;
-}
+        ul {
+            list-style: none;
+            padding: 0;
+        }
 
-ul li a:hover {
-    background: #2980b9;
-    color: #fff;
-    transform: translateX(5px);
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
-}
+        ul li {
+            margin: 10px 0;
+        }
 
-</style></head><body><h1>This is a heading</h1><p>This is a paragraph.</p></body></html>
+        ul li a {
+            display: block;
+            text-decoration: none;
+            padding: 10px 15px;
+            background: #ecf0f1;
+            border-radius: 8px;
+            color: #2c3e50;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        ul li a:hover {
+            background: #2980b9;
+            color: #fff;
+            transform: translateX(5px);
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Welcome to My Cool Clean Page</h1>
+    <p>This page has a soft gradient overlay on a beautiful background image.</p>
+
+    <section>
+        <h2>My Links</h2>
+        <ul>
+            <li><a href="#">D3.js Experiments</a></li>
+            <li><a href="#">Projects</a></li>
+            <li><a href="#">Resources</a></li>
+        </ul>
+    </section>
+</body>
+</html>
