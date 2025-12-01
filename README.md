@@ -1,5 +1,5 @@
 # Hardik-AWT
-This is my first Git Repository 
+This is my first Git Repository
 
 # 💻 Advanced Web Technologies Lab Report – UPES
 
@@ -19,6 +19,9 @@ Each experiment demonstrates practical implementation of Node.js, Express.js, co
    - [Exp 5 – Rendering Files from Subfolders](#exp-5--server)
    - [Exp 6 – Cookie Handling](#exp-6--NodeJs)
    - [Exp 7 – Session & Cookie Demo](#exp-7--session--cookie-demo)
+   - [Exp 8 – Student App & Shopping App (Node.js + MongoDB)](#exp-8--student-app--shopping-app-nodejs--mongodb)
+   - [Exp 9 – SVG & D3.js Basics](#exp-9--svg--d3js-basics)
+   - [Exp 10 – D3.js Advanced Data Visualization](#exp-10--d3js-advanced-data-visualization)
 3. [⚙️ Technologies Used](#️-technologies-used)
 4. [🧠 Learnings](#-learnings)
 5. [🚧 Challenges Faced](#-challenges-faced)
@@ -146,8 +149,91 @@ Each experiment demonstrates practical implementation of Node.js, Express.js, co
 ![Exp 7 Output](./code&output/Exp7-output1.png)
 ![Exp 7 Output](./code&output/Exp7-3output.png)
 ![Exp 7 Output](./code&output/Exp7-3output2.png)
-![Exp 17 Output](./code&output/Exp7-output3.png)
+![Exp 7 Output](./code&output/Exp7-output3.png)
 ---
+
+### **Exp 8 – Student App & Shopping App (Node.js + MongoDB)**
+**Objective:** Develop two Express-based web apps: a **Student Management System** and a **Shopping Application** integrated with MongoDB.  
+**Concepts Covered:**  
+- CRUD operations with MongoDB using Mongoose  
+- RESTful API design for both apps  
+- Form submission and server-side rendering  
+- Authentication and validation  
+- Dynamic EJS views for student & product data  
+
+📂 **Subfolders:**
+- `StudentApp/` → Add, update, delete, and view student records  
+- `ShoppingApp/` → Manage products, cart, and checkout
+
+📷 **Screenshot of Code:**  
+![Exp 8 Student App](./code&output/Exp8_student%20(1).png)
+![Exp 8 Student App](./code&output/Exp8_student%20(2).png)
+![Exp 8 Student App](./code&output/Exp8_student%20(3).png)
+
+![Exp 8 Shopping App](./code&output/Exp8_Code%20(1).png)
+![Exp 8 Shopping App](./code&output/Exp8_Code%20(2).png)
+![Exp 8 Shopping App](./code&output/Exp8_Code%20(3).png)
+![Exp 8 Shopping App](./code&output/Exp8_Code%20(4).png)
+
+📸 **Screenshot of Output:**  
+![Exp 8 Student Output](./code&output/Exp8_student_output.png)
+![Exp 8 Shopping Output](./code&output/Exp8_output.png)
+
+---
+
+### **Experiment 9 & 10 – SVG and D3.js Data Visualization**
+
+**Objective:**  
+To understand and implement **data visualization** using **SVG (Scalable Vector Graphics)** and **D3.js** by combining both static and dynamic visualization techniques.  
+This experiment focuses on creating, styling, and manipulating SVG elements, and then integrating **D3.js** to visualize and interact with real data from CSV files.
+
+---
+
+**Concepts Covered:**  
+- Creation and manipulation of SVG elements (`rect`, `circle`, `text`, etc.)  
+- Data binding and DOM selection using **D3.js**  
+- Building static and interactive **bar charts**  
+- Applying **transitions**, **scales**, and **axes** for better visualization  
+- Interactivity using mouse events and button triggers  
+- Reading and plotting data dynamically from **CSV files**  
+- Integration of multiple visualization components in a single UI  
+
+---
+
+📂 **Folder Structure:**  
+- `exp.html` → Combined Experiment 9 implementation (SVG + D3.js)  
+- `csv.html` → Experiment 10: CSV data visualization using D3.js  
+- `data.csv` → Dataset for D3.js chart  
+- `code&output/` → Folder containing code snippets and output screenshots  
+
+---
+
+📘 **Experiment Overview:**
+| Section | Description |
+|----------|-------------|
+| **Part 1 – Bar Chart using D3.js** | Displays a static bar chart created using SVG rectangles and D3 data binding. |
+| **Part 2 – Interactive Shapes** | Demonstrates basic SVG interactivity (hover and click events). |
+| **Part 3 – Element Modification** | Uses D3 to dynamically modify SVG properties such as color and radius. |
+| **Part 4 – CSV Data Visualization** | Loads external CSV data and converts it into a bar chart using D3 scales and bindings. |
+
+---
+
+📷 **Screenshots of Code:**  
+![Exp 9 SVG Code](./code&output/Exp9&10_code%20(1).png)  
+![Exp 9 D3 Code](./code&output/Exp9&10_code%20(2).png)  
+![Exp 10 D3 Code](./code&output/Exp9&10_code%20(3).png)
+![Exp 10 D3 Code](./code&output/Exp9&10_code%20(4).png)
+
+📸 **Screenshots of Output:**  
+![Exp 9 SVG and d3 Output](./code&output/Exp9&10_output%20(3).png)  
+![Exp 10 Chart Output 1](./code&output/Exp9&10_output%20(1).png)  
+![Exp 10 Dashboard Output](./code&output/Exp9&10_output%20(2).png)
+
+---
+
+🧠 **Learning Outcome:**  
+By combining both experiments, students learn how to use **D3.js with SVG** for building interactive, scalable, and data-driven visualizations.  
+This integrated approach demonstrates the power of D3.js in manipulating SVG elements dynamically and rendering responsive charts using real-world datasets.
 
 ## ⚙️ Technologies Used
 

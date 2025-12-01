@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Experiment 10: CSV Graph using D3.js</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+
+    <style>
+        /* ===== Reset ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* ===== Page Layout ===== */
+        body {
+            font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont,
+                Arial, sans-serif;
+            min-height: 100vh;
+            background: radial-gradient(circle at top left, #4f46e5, #0f172a);
+            display: flex;
+            justify-content: center;
+            padding: 32px 16px;
+            color: #111827;
+        }
+
+        .wrapper {
+            width: 100%;
+            max-width: 900px;
+            background: #f9fafb;
+            border-radius: 24px;
+            padding: 30px 28px 34px;
+            box-shadow: 0 20px 50px rgba(15, 23, 42, 0.4);
+        }
+
+        header {
+            border-bottom: 1px solid rgba(148, 163, 184, 0.4);
+            margin-bottom: 24px;
+            padding-bottom: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            color: #111827;
+            letter-spacing: 0.03em;
+        }
+
+        header p {
+            font-size: 0.95rem;
+            color: #6b7280;
+            margin-top: 4px;
+        }
+
+        .chip {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            padding: 6px 12px;
+            border-radius: 999px;
+            border: 1px solid rgba(37, 99, 235, 0.4);
+            background: #e0ebff;
+            color: #1d4ed8;
+            white-space: nowrap;
+        }
+
+        @media (max-width: 720px) {
+            .wrapper {
+                padding: 22px 18px;
+            }
+
+            header h1 {
+                font-size: 1.6rem;
+            }
+        }
+
+        /* ===== Section Card ===== */
+        section {
+            background: #ffffff;
+            border-radius: 18px;
+            border: 1px solid rgba(148, 163, 184, 0.5);
+            padding: 22px 18px 18px;
+            box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        section::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at top right, #dbeafe, transparent);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s ease;
+        }
+
+        section:hover::before {
+            opacity: 1;
+        }
+
+        section h2 {
+            color: #111827;
+            font-size: 1.2rem;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        section p {
+            font-size: 0.9rem;
+            color: #6b7280;
+            margin-bottom: 12px;
+        }
+
+        svg {
+            border-radius: 12px;
+            background: #f3f4f6;
+            border: 1px dashed rgba(148, 163, 184, 0.7);
+        }
+
+        .footer-note {
+            margin-top: 20px;
+            font-size: 0.78rem;
+            color: #9ca3af;
+            text-align: right;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <header>
+            <div>
+                <h1>Experiment 10: CSV → Graph using D3.js</h1>
+                <p>Load and visualize CSV data dynamically using scalable D3 bar charts.</p>
+            </div>
+            <div class="chip">AWT • Exp 10</div>
+        </header>
+
+        <section>
+            <h2>📊 CSV Data Visualization</h2>
+            <p>
+                The CSV file (<code>data.csv</code>) is parsed using D3, and its data values are mapped into a
+                responsive bar chart with labels.
+            </p>
+
+            <svg width="600" height="300"></svg>
+        </section>
+
+        <p class="footer-note">Data Visualization • Experiment 10</p>
+    </div>
+
+    <!-- ================== D3 CSV SCRIPT ================== -->
+    <script>
+        const svg = d3.select("svg");
+        const width = 600;
+        const height = 300;
+        const barWidth = 50;
+        const marginLeft = 40;
+
+        d3.csv("data.csv").then(data => {
+            data.forEach(d => d.value = +d.value);
+
+            // Scale setup for dynamic bar height and position
+            const yScale = d3.scaleLinear()
+                .domain([0, d3.max(data, d => d.value)])
+                .range([height - 30, 20]);
+
+            // Bars
+            svg.selectAll("rect")
+                .data(data)
+                .enter()
+                .append("rect")
+                .attr("x", (d, i) => i * (barWidth + 15) + marginLeft)
+                .attr("y", d => yScale(d.value))
+                .attr("width", barWidth)
+                .attr("height", d => height - 30 - yScale(d.value))
+                .attr("fill", "teal")
+                .attr("rx", 6)
+                .on("mouseover", function () {
+                    d3.select(this).attr("fill", "#2563eb");
+                })
+                .on("mouseout", function () {
+                    d3.select(this).attr("fill", "teal");
+                });
+
+            // Value Labels on top of bars
+            svg.selectAll(".bar-value")
+                .data(data)
+                .enter()
+                .append("text")
+                .attr("class", "bar-value")
+                .text(d => d.value)
+                .attr("x", (d, i) => i * (barWidth + 15) + marginLeft + barWidth / 3)
+                .attr("y", d => yScale(d.value) - 5)
+                .attr("fill", "#111827")
+                .attr("font-size", "12px");
+
+            // X-axis labels (name field)
+            svg.selectAll(".bar-label")
+                .data(data)
+                .enter()
+                .append("text")
+                .attr("class", "bar-label")
+                .text(d => d.name)
+                .attr("x", (d, i) => i * (barWidth + 15) + marginLeft + barWidth / 4)
+                .attr("y", height - 10)
+                .attr("fill", "#374151")
+                .attr("font-size", "12px");
+        });
+    </script>
+</body>
+
+</html>

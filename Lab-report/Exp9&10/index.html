@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Data Visualization Experiments</title>
+
+    <style>
+        /* ===== Reset ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* ===== Page Layout ===== */
+        body {
+            font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont,
+                Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 16px;
+            background: radial-gradient(circle at top left, #4f46e5, #0f172a);
+            color: #0f172a;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+            background: #f9fafb;
+            border-radius: 24px;
+            padding: 32px 28px 28px;
+            box-shadow: 0 20px 50px rgba(15, 23, 42, 0.35);
+        }
+
+        /* ===== Header ===== */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .title-block h1 {
+            font-size: 1.9rem;
+            letter-spacing: 0.03em;
+            color: #111827;
+        }
+
+        .title-block p {
+            font-size: 0.95rem;
+            color: #6b7280;
+            margin-top: 4px;
+        }
+
+        .tag {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            padding: 6px 12px;
+            border-radius: 999px;
+            border: 1px solid rgba(55, 65, 81, 0.2);
+            background: #eef2ff;
+            color: #4f46e5;
+            white-space: nowrap;
+        }
+
+        /* ===== Cards Grid ===== */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        @media (max-width: 720px) {
+            .container {
+                padding: 24px 18px 20px;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        /* ===== Individual Card ===== */
+        .card {
+            position: relative;
+            padding: 18px 18px 16px;
+            border-radius: 18px;
+            background: #ffffff;
+            border: 1px solid rgba(15, 23, 42, 0.06);
+            box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            transition: transform 0.18s ease, box-shadow 0.18s ease,
+                border-color 0.18s ease;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at top right, #dbeafe, transparent);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 35px rgba(15, 23, 42, 0.16);
+            border-color: rgba(59, 130, 246, 0.5);
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .icon-badge {
+            width: 32px;
+            height: 32px;
+            border-radius: 999px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            background: #eff6ff;
+        }
+
+        .card h3 {
+            font-size: 1.05rem;
+            color: #111827;
+        }
+
+        .card p {
+            font-size: 0.9rem;
+            color: #6b7280;
+        }
+
+        .meta {
+            font-size: 0.8rem;
+            color: #9ca3af;
+        }
+
+        /* ===== Button Link ===== */
+        .card a {
+            margin-top: 4px;
+            align-self: flex-start;
+            text-decoration: none;
+            color: #ffffff;
+            background: linear-gradient(135deg, #2563eb, #4f46e5);
+            padding: 8px 14px;
+            border-radius: 999px;
+            font-size: 0.88rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: background 0.18s ease, transform 0.18s ease,
+                box-shadow 0.18s ease;
+            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35);
+        }
+
+        .card a span.arrow {
+            font-size: 1rem;
+            transform: translateX(0);
+            transition: transform 0.18s ease;
+        }
+
+        .card a:hover {
+            transform: translateY(-1px);
+            background: linear-gradient(135deg, #1d4ed8, #4338ca);
+            box-shadow: 0 12px 26px rgba(37, 99, 235, 0.45);
+        }
+
+        .card a:hover span.arrow {
+            transform: translateX(3px);
+        }
+
+        /* ===== Footer Note ===== */
+        .footer-note {
+            margin-top: 20px;
+            font-size: 0.78rem;
+            color: #9ca3af;
+            text-align: right;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="container">
+        <header class="header">
+            <div class="title-block">
+                <h1>Data Visualization – Experiment 9 &amp; 10</h1>
+                <p>Explore SVG &amp; D3.js based visualizations for AWT Lab.</p>
+            </div>
+            <div class="tag">AWT Lab • D3.js &amp; SVG</div>
+        </header>
+
+        <section class="grid">
+            <!-- Experiment 9 Card -->
+            <article class="card">
+                <div class="card-header">
+                    <div class="icon-badge">📊</div>
+                    <div>
+                        <h3>Experiment 9 (Combined)</h3>
+                        <p>
+                            Bar chart, interactive shapes &amp; dynamic SVG manipulation.
+                        </p>
+                    </div>
+                </div>
+                <p class="meta">
+                    Bar Chart • Interactive SVG • Shape Transformations
+                </p>
+                <a href="exp.html">
+                    Open Experiment 9
+                    <span class="arrow">↗</span>
+                </a>
+            </article>
+
+            <!-- Experiment 10 Card -->
+            <article class="card">
+                <div class="card-header">
+                    <div class="icon-badge">📈</div>
+                    <div>
+                        <h3>Experiment 10</h3>
+                        <p>Load CSV data and transform it into a D3.js visualization.</p>
+                    </div>
+                </div>
+                <p class="meta">CSV Parsing • Scales • Axes • D3.js Graph</p>
+                <a href="csv.html">
+                    Open Experiment 10
+                    <span class="arrow">↗</span>
+                </a>
+            </article>
+        </section>
+
+        <p class="footer-note">Index • Data Visualization Module</p>
+    </main>
+</body>
+
+</html>
