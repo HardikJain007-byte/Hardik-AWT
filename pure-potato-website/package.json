@@ -1,0 +1,12 @@
+{
+  "name": "pure-potato",
+  "version": "1.0.0",
+  "description": "Raw Potato Chips & Papad Website",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

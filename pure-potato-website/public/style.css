@@ -1,0 +1,85 @@
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #ff9a00, #ff5e00);
+    overflow-x: hidden;
+}
+
+/* Multi Layer Background Graphics */
+body::before {
+    content: "";
+    position: fixed;
+    width: 500px;
+    height: 500px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 50%;
+    top: -100px;
+    left: -100px;
+    filter: blur(120px);
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    width: 400px;
+    height: 400px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 50%;
+    bottom: -150px;
+    right: -100px;
+    filter: blur(100px);
+}
+
+/* Glass effect */
+header {
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    padding: 25px;
+    text-align: center;
+    color: white;
+}
+
+.products {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 60px;
+    flex-wrap: wrap;
+}
+
+.card {
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(15px);
+    padding: 25px;
+    border-radius: 20px;
+    width: 260px;
+    color: white;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    transition: 0.4s;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+button {
+    background: white;
+    color: #ff5e00;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover {
+    background: #ffd8b0;
+}
+
+.cart {
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    padding: 40px;
+    color: white;
+    text-align: center;
+}
